@@ -1,0 +1,48 @@
+{
+	"author": {
+		"name": "Baptiste Pillot",
+		"email": "baptiste@pillot.fr"
+	},
+	"dependencies": {
+		"dependency-graph": "^1.0"
+	},
+	"description": "Builds a dependency-sorted list of Nodes.js modules",
+	"devDependencies": {
+		"typescript": "~5.8"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"exports": "./cjs/dependency.js",
+	"homepage": "https://it.rocks",
+	"files": [
+		"LICENSE",
+		"README.md",
+		"cjs/**",
+		"!*.map"
+	],
+	"keywords": [
+		"backend",
+		"dependency",
+		"dependency-graph",
+		"graph",
+		"it.rocks",
+		"module-order",
+		"modules",
+		"nodejs",
+		"order",
+		"reorder",
+		"sorting"
+	],
+	"license": "ISC",
+	"name": "@itrocks/dependency",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/itrocks-ts/dependency.git"
+	},
+	"scripts": {
+		"build": "tsc"
+	},
+	"types": "./cjs/dependency.d.ts",
+	"version": "0.0.1"
+}
