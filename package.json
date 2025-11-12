@@ -4,7 +4,8 @@
 		"email": "baptiste@pillot.fr"
 	},
 	"dependencies": {
-		"dependency-graph": "^1.0"
+		"dependency-graph": "^1.0",
+		"list-installed": "^5.3"
 	},
 	"description": "Builds a dependency-sorted list of Nodes.js modules",
 	"devDependencies": {
@@ -44,5 +45,5 @@
 		"build": "tsc"
 	},
 	"types": "./cjs/dependency.d.ts",
-	"version": "0.0.1"
+	"version": "0.0.2"
 }
