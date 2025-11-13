@@ -2,8 +2,7 @@
 	"compilerOptions": {
 		"declaration": true,
 		"forceConsistentCasingInFileNames": true,
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
+		"module": "CommonJS",
 		"outDir": "./cjs",
 		"skipLibCheck": true,
 		"sourceMap": true,
