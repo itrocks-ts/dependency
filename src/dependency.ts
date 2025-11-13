@@ -1,25 +1,62 @@
 import { appDir }        from '@itrocks/app-dir'
-import { DepGraph }      from 'dependency-graph'
 import { listInstalled } from 'list-installed'
 
 export async function dependencies(path = appDir)
 {
-	const dependencies = new Map<string, string[]>
-	const graph        = new DepGraph<string>()
+	const dependencies = new Map<string, Set<string>>
+	const already      = new Set<string>
+	const result       = new Array<string>
+	// list installed packages and their dependencies
 	for (const [packageName, packageJson] of (await listInstalled(path)).entries()) {
-		dependencies.set(packageName, Object.keys(packageJson.dependencies ?? {}))
+		const packageDependencies = new Set<string>
+		for (const dependency of Object.keys(packageJson.dependencies ?? {})) {
+			if (!already.has(dependency)) {
+				packageDependencies.add(dependency)
+			}
+		}
+		if (packageDependencies.size) {
+			dependencies.set(packageName, packageDependencies)
+		}
+		else {
+			already.add(packageName)
+			result.push(packageName)
+		}
 	}
-	for (const packageName of dependencies.keys()) {
-		graph.addNode(packageName)
-	}
+	// remove not-installed dependencies
 	for (const [packageName, packageDependencies] of dependencies.entries()) {
-		if (packageName.startsWith('@itrocks')) console.log('deps of', packageName + ':')
 		for (const dependency of packageDependencies) {
-			if (dependencies.has(dependency)) {
-				if (packageName.startsWith('@itrocks')) console.log('>', dependency)
-				graph.addDependency(packageName, dependency)
+			if (!dependencies.has(dependency)) {
+				packageDependencies.delete(dependency)
+			}
+		}
+		if (!packageDependencies.size) {
+			dependencies.delete(packageName)
+			already.add(packageName)
+			result.push(packageName)
+		}
+	}
+	// order packages by their dependencies
+	let didSomething = true
+	while (dependencies && didSomething) {
+		didSomething = false
+		for (const [packageName, packageDependencies] of dependencies.entries()) {
+			for (const dependency of packageDependencies) {
+				if (already.has(dependency)) {
+					packageDependencies.delete(dependency)
+				}
+			}
+			if (!packageDependencies.size) {
+				dependencies.delete(packageName)
+				already.add(packageName)
+				result.push(packageName)
+				didSomething = true
 			}
 		}
 	}
-	return graph.overallOrder()
+	// cyclic dependency error
+	if (dependencies.size) {
+		throw 'Cyclic dependencies: ' + new Array(dependencies.keys()).join(', ')
+	}
+	// done
+	return result
 }
