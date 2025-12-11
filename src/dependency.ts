@@ -35,7 +35,7 @@ export async function dependencies(path = appDir)
 			result.push(packageName)
 		}
 	}
-	// order packages by their dependencies
+	// sort packages by their dependencies
 	let didSomething = true
 	while (dependencies && didSomething) {
 		didSomething = false

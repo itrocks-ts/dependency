@@ -32,7 +32,9 @@
 		"nodejs",
 		"order",
 		"reorder",
-		"sorting"
+		"sort",
+		"sorting",
+		"topological-sort"
 	],
 	"license": "ISC",
 	"name": "@itrocks/dependency",
@@ -44,5 +46,5 @@
 		"build": "tsc"
 	},
 	"types": "./cjs/dependency.d.ts",
-	"version": "0.0.5"
+	"version": "0.0.6"
 }
