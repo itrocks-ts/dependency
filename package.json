@@ -8,17 +8,18 @@
 	},
 	"description": "Builds a dependency-sorted list of Nodes.js modules",
 	"devDependencies": {
-		"typescript": "~5.9"
+		"@types/node": "^24.10",
+		"typescript": "^6.0"
 	},
 	"engines": {
-		"node": ">=18"
+		"node": ">=24"
 	},
 	"exports": "./cjs/dependency.js",
 	"homepage": "https://it.rocks",
 	"files": [
 		"LICENSE",
 		"README.md",
-		"cjs/**",
+		"cjs",
 		"!*.map"
 	],
 	"keywords": [
@@ -45,6 +46,5 @@
 	"scripts": {
 		"build": "tsc"
 	},
-	"types": "./cjs/dependency.d.ts",
-	"version": "0.0.7"
+	"version": "0.1.0"
 }
