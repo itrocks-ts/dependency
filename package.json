@@ -9,7 +9,7 @@
 	"description": "Builds a dependency-sorted list of Nodes.js modules",
 	"devDependencies": {
 		"@types/node": "^24.10",
-		"typescript": "^6.0"
+		"typescript": "^7.0"
 	},
 	"engines": {
 		"node": ">=24"
@@ -46,5 +46,5 @@
 	"scripts": {
 		"build": "tsc"
 	},
-	"version": "0.1.0"
+	"version": "0.1.1"
 }
