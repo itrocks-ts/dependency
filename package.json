@@ -8,6 +8,7 @@
 	},
 	"description": "Builds a dependency-sorted list of Nodes.js modules",
 	"devDependencies": {
+		"@itrocks/app-dir": "latest",
 		"@types/node": "^24.10",
 		"typescript": "^7.0"
 	},
@@ -46,5 +47,5 @@
 	"scripts": {
 		"build": "tsc"
 	},
-	"version": "0.1.1"
+	"version": "0.1.2"
 }
